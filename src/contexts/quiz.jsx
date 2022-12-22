@@ -1,6 +1,6 @@
-import { createContext, useReducer } from "react";
-import results from '../data'
+import { createContext, useReducer, useEffect } from "react";
 import { shuffleAnswers } from "../helpers";
+import {results} from '../data'
 
 const initialState = {
   results,
@@ -8,8 +8,10 @@ const initialState = {
   showResults: false,
   correctAnswerCount: 0,
   answer: shuffleAnswers(results[0]),
-  currentAnswer: ""
+  currentAnswer: "",
 }
+
+
 
 const reducer = (state, action) => {
   switch(action.type){
@@ -35,6 +37,13 @@ const reducer = (state, action) => {
     }
     case 'RESTART': {
       return initialState
+    }
+    case 'DATA': {
+      return {
+        ...state,
+        results: action.payload,
+        answer: shuffleAnswers(results[0])
+      }
     }
     default: 
       return state
