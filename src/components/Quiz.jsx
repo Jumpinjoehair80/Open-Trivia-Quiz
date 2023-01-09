@@ -14,18 +14,20 @@ const Quiz = () => {
     .get('https://opentdb.com/api.php?amount=10&type=multiple')
     .then(res => {
       const result = res.data.results;
+      console.log(result[0].incorrect_answers)
+      const answers = [
+        result[0].correct_answer,
+        ...result[0].incorrect_answers
+      ]
 
       // set user info
       dispatch({
         type: "DATA",
-        payload: result
+        payload: result,
+        payment: answers
       });
     })
   }, [])
-
-
-    console.log('quiz state result', quizState.results)
-
 
   return (
     <div className="quiz--container">

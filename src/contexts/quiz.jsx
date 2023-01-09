@@ -1,6 +1,6 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer } from "react";
+import { results } from "../data";
 import { shuffleAnswers } from "../helpers";
-import {results} from '../data'
 
 const initialState = {
   results,
@@ -11,6 +11,7 @@ const initialState = {
   currentAnswer: "",
 }
 
+console.log('answer', initialState.answer)
 
 
 const reducer = (state, action) => {
@@ -27,6 +28,9 @@ const reducer = (state, action) => {
       const showResults = state.currentQuestionIndex === state.results.length - 1
       const currentQuestionIndex = showResults ? state.currentQuestionIndex : state.currentQuestionIndex + 1
       const answer = showResults ? [] : shuffleAnswers(state.results[currentQuestionIndex])
+      console.log('showResults', showResults)
+      console.log('currentQuestionIndex', currentQuestionIndex)
+      console.log('answer', answer.incorrect_answers)
       return {
         ...state,
         currentQuestionIndex,
@@ -42,7 +46,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         results: action.payload,
-        answer: shuffleAnswers(results[0])
+        answer: action.payment
       }
     }
     default: 

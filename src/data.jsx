@@ -1,6 +1,3 @@
-
-
-
 export const results =  [
   {
   category: "Animals",
