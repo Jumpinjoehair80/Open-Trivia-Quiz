@@ -3,6 +3,7 @@ import { QuizContext } from "../contexts/quiz"
 import Question from "./Question"
 import axios from "axios"
 import { useEffect } from "react"
+import he from "he"
 
 const Quiz = () => {
   const [quizState, dispatch] = useContext(QuizContext)
@@ -11,7 +12,7 @@ const Quiz = () => {
     axios
     .get('https://opentdb.com/api.php?amount=10&type=multiple')
     .then(res => {
-      const result = res.data.results;
+      let result = res.data.results;
       const answers = [
         result[0].correct_answer,
         ...result[0].incorrect_answers
