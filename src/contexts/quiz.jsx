@@ -9,10 +9,7 @@ const initialState = {
   correctAnswerCount: 0,
   answer: shuffleAnswers(results[0]),
   currentAnswer: "",
-}
-
-console.log('answer', initialState.answer)
-
+} 
 
 const reducer = (state, action) => {
   switch(action.type){
@@ -28,9 +25,6 @@ const reducer = (state, action) => {
       const showResults = state.currentQuestionIndex === state.results.length - 1
       const currentQuestionIndex = showResults ? state.currentQuestionIndex : state.currentQuestionIndex + 1
       const answer = showResults ? [] : shuffleAnswers(state.results[currentQuestionIndex])
-      console.log('showResults', showResults)
-      console.log('currentQuestionIndex', currentQuestionIndex)
-      console.log('answer', answer.incorrect_answers)
       return {
         ...state,
         currentQuestionIndex,
@@ -39,9 +33,9 @@ const reducer = (state, action) => {
         currentAnswer: ""
       }
     }
-    case 'RESTART': {
-      return initialState
-    }
+    // case 'RESTART': {
+    //   return initialState
+    // }
     case 'DATA': {
       return {
         ...state,

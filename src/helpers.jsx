@@ -5,7 +5,6 @@ export const shuffleAnswers = (results) => {
     ...results.incorrect_answers
   ]
 
-  return unshuffledAnswers
+  return unshuffledAnswers.map(answer => ({sort: Math.random(), value: answer})).sort((a,b) => a.sort - b.sort).map(obj => obj.value)
 }
 
-// return unshuffledAnswers.map(answer => ({sort: Math.random(), value: answer})).sort((a,b) => a.sort - b.sort).map(obj => obj.value)
